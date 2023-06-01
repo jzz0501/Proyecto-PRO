@@ -1,0 +1,30 @@
+DROP DATABASE IF EXISTS Proyecto;
+CREATE DATABASE Proyecto CHARSET UTF8MB4 COLLATE UTF8MB4_SPANISH_CI;
+
+USE Proyecto;
+
+CREATE TABLE Product (
+cod_product INT PRIMARY KEY AUTO_INCREMENT,
+modelo VARCHAR(20) NOT NULL,
+name VARCHAR(30) NOT NULL,
+description VARCHAR(50) NOT NULL,
+precio DECIMAL(5,2) NOT NULL,
+period_warrantly INT NOT NULL
+);
+
+CREATE TABLE Client (
+id_client INT PRIMARY KEY AUTO_INCREMENT,
+name VARCHAR(30) NOT NULL,
+dni CHAR(9) UNIQUE NOT NULL,
+telefono CHAR(9) NOT NULL,
+fecha_nac DATE NOT NULL,
+address VARCHAR(50) NOT NULL,
+gmail VARCHAR(40) NOT NULL
+);
+
+CREATE TABLE Account_Client (
+username VARCHAR(30) PRIMARY KEY,
+password VARCHAR(20) NOT NULL,
+id_client INT,
+CONSTRAINT FK_AccClient_idClient FOREIGN KEY (id_client) REFERENCES Client (id_client)
+);
